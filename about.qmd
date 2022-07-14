@@ -1,0 +1,20 @@
+---
+title: "About"
+image: profile.jpg
+about:
+  template: jolla
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://github.com/Ararder/
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com
+    - icon: github
+      text: My Github
+      href: https://github.com/Ararder/
+---
+
+Hi! My name is Arvid. I'm interested in all things omics, with a focus on genetics.
+
+I'm a research assistant at [KI Psychiatrics Genomics institute](https://ki.se/en/meb/ki-psychiatric-genomics-institute), working with [Lu Yi](https://staff.ki.se/people/lu-yi). My work focuses on dissecting the heterogeneity of Major Depression (MD) using genomics and epidemiological data.

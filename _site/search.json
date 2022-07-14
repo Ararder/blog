@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I’m a research assistant at KI Psychiatrics Genomics institute, working with Lu Yi. My work focuses on dissecting the heterogeneity of Major Depression (MD) using genomics and epidemiological data."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "genetics\n\n\nscRNA\n\n\n\n\n\n\n\n\n\n\n\nJun 29, 2022\n\n\nArvid Harder\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nJun 29, 2022\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nJun 26, 2022\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/hello-world/index.html",
+    "href": "posts/hello-world/index.html",
+    "title": "Replicating the analysis of Skene et al, 2020",
+    "section": "",
+    "text": "This past month has got me interested in the intersection of neuroscience and genetics - especially how to combine single-cell RNA sequencing data with that of genome-wide association studies. There are several foundational papers in this intersection, and here i replicate the analysis from a paper focusing on brain disorders - Genetic identification of cell types underlying brain complex traits yields insights into the etiology of Parkinson’s disease.\nTo get started we first download some data!"
+  },
+  {
+    "objectID": "posts/hello-world/index.html#download-data",
+    "href": "posts/hello-world/index.html#download-data",
+    "title": "Replicating the analysis of Skene et al, 2020",
+    "section": "Download data",
+    "text": "Download data\n\n\nCode\n\n# First we download the aggregated gene expression data for 265 clusters of cell-types from\n# adolescent mouse brain\nwget https://storage.googleapis.com/linnarsson-lab-loom/l5_all.agg.loom\n\n# MDD\nwget -O mdd.gz https://datashare.ed.ac.uk/bitstream/handle/10283/3203/PGC_UKB_depression_genome-wide.txt?sequence=3&isAllowed=y\n\n# Bipolar disorder\nwget -O bip.gz https://figshare.com/ndownloader/files/26603681\n\n# Schizophenia\nwget -O scz.gz https://figshare.com/ndownloader/files/34517807\n\n# testing update\necho hello"
+  },
+  {
+    "objectID": "posts/hello-world/index.html#prepare-gene-sets-based-on-the-level-4-cell-types",
+    "href": "posts/hello-world/index.html#prepare-gene-sets-based-on-the-level-4-cell-types",
+    "title": "Replicating the analysis of Skene et al, 2020",
+    "section": "Prepare gene-sets based on the level 4 cell-types",
+    "text": "Prepare gene-sets based on the level 4 cell-types\nFor ease of visualization i will prepare gene-sets from each of the level 4 cell-types, as plotting 265 cell-types is slightly overkill. We start off by loading our packages,and defining some helper functions.\n\n\nCode\nlibrary(data.table)\nlibrary(tidyverse)\nlibrary(ggplot2)\nlibrary(rhdf5)\nlibrary(janitor)\nlibrary(fs)\nlibrary(glue)\n\nscale_to_1tpm <- function(tbl, var) {\n  stopifnot(\"expr\" %in% colnames(tbl))\n  tbl %>% \n    group_by(.data[[var]]) %>% \n    mutate(expr = expr*1000000 / sum(expr)) %>% \n    ungroup()\n}\n\ngene_specificity <- function(tbl, var) {\n  # Here we compute the central metric: gene specificity.\n  # Gene specificty isa %, how much of the genes total expression over all tissues\n  # is in the index cell-type?\n  \n  tbl %>% \n    group_by(.data[[var]]) %>% \n    mutate(specificity = expr/sum(expr)) %>% \n    ungroup()\n}\n\n\nextract_top_10_pct <- function(tbl) {\n  tbl %>% \n    arrange(desc(specificity)) %>% \n    slice_head(n = round(nrow(.)/10))  \n}\n\nmunge_magma_genesets <- function(tbl, name) {\n  tbl %>%\n    # make the cell type names easy to work with\n    mutate( name := make_clean_names({{ name }}))\n  \n}\n\n# open aggregated expr data\n# df_h5 <- H5Fopen(\"data/zeisel_2018/l5_all.agg.loom\")\n\n\n\n\nCode\nprint(getwd())\n\n\n[1] \"/Volumes/arvhar/Project/academic_blog/posts/hello-world\""
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "Since this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "publications.html",
+    "href": "publications.html",
+    "title": "Arvid Harder",
+    "section": "",
+    "text": "Assigning credit for academic work is tricky, and the first/last author distinct has it’s particular weaknesses. Here i list all academic papers for which i have contributed work, and i explain what i did for each project."
+  },
+  {
+    "objectID": "publications.html#genetics-of-age-at-onset-in-major-depression",
+    "href": "publications.html#genetics-of-age-at-onset-in-major-depression",
+    "title": "Arvid Harder",
+    "section": "1. Genetics of age at onset in major depression",
+    "text": "1. Genetics of age at onset in major depression\nThis was my first project as a RA, a project that grew out from my bachelor thesis. I wrote all research code, wrote the paper (with input from my supervisor). Code is available here."
+  },
+  {
+    "objectID": "publications.html#genetic-heterogeneity-and-subtypes-of-major-depression",
+    "href": "publications.html#genetic-heterogeneity-and-subtypes-of-major-depression",
+    "title": "Arvid Harder",
+    "section": "2. Genetic heterogeneity and subtypes of major depression",
+    "text": "2. Genetic heterogeneity and subtypes of major depression\nFor this paper i gave technical support. I got the fastGWA software setup, generated the genetic relatedness matrix for UKB (N=457k) for our local compute cluster. I also assisted with setting up HDL on the compute cluster, and provided sample scripts for running HDL over several phenotypes. Lastly, i reviewed the majority of the research code."
+  }
+]

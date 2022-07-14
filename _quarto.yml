@@ -1,0 +1,18 @@
+project:
+  type: website
+
+website:
+  title: "Arvid Harder"
+  navbar:
+    right:
+      - about.qmd
+      - publications.qmd
+      - icon: github
+        href: https://github.com/
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+
+editor: visual
+

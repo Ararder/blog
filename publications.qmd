@@ -1,0 +1,20 @@
+---
+title: ""
+image: profile.jpg
+about:
+  template: jolla
+---
+
+Assigning credit for academic work is tricky, and the first/last author distinct has it's particular weaknesses. Here i list all academic papers for which i have contributed work, and i explain what i did for each project.
+
+# Published articles
+
+## 1. [Genetics of age at onset in major depression](https://www.nature.com/articles/s41398-022-01888-z)
+
+This was my first project as a RA, a project that grew out from my bachelor thesis. I wrote all research code, wrote the paper (with input from my supervisor). Code is available [here](https://github.com/Ararder/Genetics-of-age-at-onset-in-MD).
+
+## 2. [Genetic heterogeneity and subtypes of major depression](https://www.nature.com/articles/s41380-021-01413-6)
+
+For this paper i gave technical support. I got the fastGWA software setup, generated the genetic relatedness matrix for UKB (N=457k) for our local compute cluster. I also assisted with setting up [HDL](https://github.com/zhenin/HDL#:~:text=be%20found%20here.-,What%20is%20HDL%3F,correlation%20estimate%20by%20about%2060%25.) on the compute cluster, and provided sample scripts for running HDL over several phenotypes. Lastly, i reviewed the majority of the [research code](https://github.com/Thuy-Dung-Nguyen/MD-subtypes).
+
+# 
